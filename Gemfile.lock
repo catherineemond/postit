@@ -58,6 +58,7 @@ GEM
       zeitwerk (~> 2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    bcrypt (3.1.13)
     bindex (0.8.1)
     bootsnap (1.4.6)
       msgpack (~> 1.0)
@@ -109,6 +110,11 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
+    octicons (9.6.0)
+      nokogiri (>= 1.6.3.1)
+    octicons_helper (9.6.0)
+      octicons (= 9.6.0)
+      rails
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -211,6 +217,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   bootsnap (>= 1.4.2)
   bootstrap-sass (~> 2.3.2.0)
   byebug
@@ -218,6 +225,7 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  octicons_helper
   pry
   puma (~> 4.1)
   rails (~> 6.0.2, >= 6.0.2.2)

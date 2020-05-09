@@ -1,0 +1,15 @@
+<div>
+  <%= render post.categories %>
+  <h5><%= link_to post.title, fix_url(post.url) %></h5>
+  <p><%= post.description %></p>
+  <p>
+    <span>posted by</span> <%= post.creator.username %>
+    <small>at <%= display_datetime(post.created_at) %></small>
+  </p>
+  <small>
+    <span>
+      <%= link_to "#{post.comments.size} comments", post_path(post) %>
+    </span>
+  </small>
+  <br><br>
+</div>

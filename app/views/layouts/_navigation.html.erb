@@ -1,8 +1,41 @@
 <ul class="nav">
-  <li>
-    <%= link_to "Postit!", root_path, :class => 'brand' %>
+  <li class='nav-item'>
+    <%= link_to "Postit!", root_path, class: 'nav-link' %>
   </li>
-  <li>
-    <%= link_to 'link', '' %>
+  <li class='nav-item'>
+    <%= link_to 'link', '', class: 'nav-link' %>
   </li>
 </ul>
+<div class='dropdown nav-link'>
+  <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropDownMenuButton" data-toggle="dropdown">
+    Categories
+  </button>
+  <div class='dropdown-menu'>
+    <% Category.all.each do |category| %>
+      <li>
+        <%= link_to category.name, category_path(category), class: 'dropdown-item' %>
+      </li>
+    <% end %>
+    <% if logged_in? %>
+      <li class="dropdown-divider"></li>
+      <li class="dropdown-item">
+        <%= octicon "plus-small" %>
+        <%= link_to(new_category_path) do %>
+          New Category
+        <% end %>
+      </li>
+    <% end %>
+  </div>
+</div>
+<% if logged_in? %>
+  <div class='nav_link'>
+    <%= link_to 'New Post', new_post_path, class: 'btn btn-sm btn-success' %>
+  </div>
+  <div class='nav_link'>
+    <%= link_to 'Log out', logout_path, class: 'btn btn-sm' %>
+  </div>
+<% else %>
+  <div class='nav_link'>
+    <%= link_to 'Log in', login_path, class: 'btn btn-sm' %>
+  </div>
+<% end %>
