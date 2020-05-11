@@ -1,9 +1,6 @@
 <ul class="nav">
-  <li class='nav-item'>
+  <li class='nav-link'>
     <%= link_to "Postit!", root_path, class: 'nav-link' %>
-  </li>
-  <li class='nav-item'>
-    <%= link_to 'link', '', class: 'nav-link' %>
   </li>
 </ul>
 <div class='dropdown nav-link'>
@@ -29,12 +26,31 @@
 </div>
 <% if logged_in? %>
   <div class='nav_link'>
-    <%= link_to 'New Post', new_post_path, class: 'btn btn-sm btn-success' %>
+    <%= link_to 'New Post', new_post_path, class: 'btn btn-sm btn-success mr-3' %>
   </div>
-  <div class='nav_link'>
-    <%= link_to 'Log out', logout_path, class: 'btn btn-sm' %>
+  <div class='dropdown nav_link'>
+    <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropDownMenuButton" data-toggle="dropdown">
+      <%= current_user.username %>
+    </button>
+    <ul class="dropdown-menu">
+      <li class="dropdown-item">
+        <%= octicon "pencil" %>
+        <%= link_to 'edit profile', edit_user_path(current_user) %>
+      </li>
+      <li class="dropdown-item">
+        <%= octicon "person" %>
+        <%= link_to 'view profile', user_path(current_user) %>
+      </li>
+      <li class="dropdown-item">
+        <%= octicon "sign-out" %>
+        <%= link_to 'log out', logout_path %>
+      </li>
+    </ul>
   </div>
 <% else %>
+  <div class='nav_link'>
+    <%= link_to 'Register', register_path, class: 'btn btn-sm btn-success' %>
+  </div>
   <div class='nav_link'>
     <%= link_to 'Log in', login_path, class: 'btn btn-sm' %>
   </div>

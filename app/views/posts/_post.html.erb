@@ -1,9 +1,23 @@
-<div>
-  <%= render post.categories %>
+<div class="row mt-3">
+  <div class="col-sm-3 mr-2 bg-light">
+    <% if logged_in? %>
+      <%= link_to vote_post_path(post, vote: true), method: :post do %>
+        <%= octicon "arrow-up" %>
+      <% end %>
+    <% end %>
+    <%= post.total_votes %> votes
+    <% if logged_in? %>
+      <%= link_to vote_post_path(post, vote: false), method: :post do %>
+        <%= octicon "arrow-down" %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-sm-12 pt-3 bg-light">
+    <%= render post.categories %>
   <h5><%= link_to post.title, fix_url(post.url) %></h5>
   <p><%= post.description %></p>
   <p>
-    <span>posted by</span> <%= post.creator.username %>
+    <span>posted by</span> <%= link_to post.creator.username, user_path(post.creator) %>
     <small>at <%= display_datetime(post.created_at) %></small>
   </p>
   <small>
@@ -13,3 +27,5 @@
   </small>
   <br><br>
 </div>
+  </div>
+  

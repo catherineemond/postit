@@ -1,0 +1,28 @@
+<% show_post ||= false %>
+
+<div class="row mb-4">
+  <div class="col-sm-2 bg-light">
+    <% if logged_in? %>
+      <%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: :post do %>
+        <%= octicon "arrow-up" %>
+      <% end %>
+    <% end %>
+    <br>
+    <%= comment.total_votes %>
+    <br>
+    <% if logged_in? %>
+      <%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: :post do %>
+        <%= octicon "arrow-down" %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-sm-10">
+    <em>"<%= comment.body %>"</em>
+    <% if show_post %>
+      on <%= link_to comment.post.title, post_path(comment.post) %>
+    <% end %>
+    <br>
+    by <%= link_to comment.creator.username, user_path(comment.creator) %>
+    <small> at <%= display_datetime(comment.created_at) %></small>
+  </div>
+</div>
